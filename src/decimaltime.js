@@ -5,7 +5,7 @@ function DecimalTime(hours, minutes, seconds, milliseconds, timezoneOffset) {
         this.fraction = Date.utcFractionFromDate(new Date());
     } else if(hours.constructor === Date) {
         this.fraction = Date.utcFractionFromDate(hours);
-    } else if(typeof hours === 'number' && arguments.length == 1) {
+    } else if(typeof hours.valueOf() === 'number' && arguments.length == 1) {
         this.fraction = hours;
     } else {
         this.fraction = Date.utcFractionFromTime(hours | 0, minutes | 0, seconds | 0, milliseconds | 0, timezoneOffset | 0);
