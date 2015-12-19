@@ -12,8 +12,12 @@ function DecimalTime(hours, minutes, seconds, milliseconds, timezoneOffset) {
     }
 }
 
+DecimalTime.prototype.getDays = function () {
+    return this.fraction | 0;
+};
+
 DecimalTime.prototype.getHours = function () {
-    return (this.fraction * 10) | 0;
+    return ((this.fraction * 10) | 0) % 10;
 };
 
 DecimalTime.prototype.getMinutes = function () {
