@@ -5,6 +5,8 @@ function DecimalTime(hours, minutes, seconds, milliseconds, timezoneOffset) {
         this.fraction = Date.utcFractionFromDate(new Date());
     } else if(hours.constructor === Date) {
         this.fraction = Date.utcFractionFromDate(hours);
+    } else if(typeof hours === 'number' && arguments.length == 1) {
+        this.fraction = hours;
     } else {
         this.fraction = Date.utcFractionFromTime(hours | 0, minutes | 0, seconds | 0, milliseconds | 0, timezoneOffset | 0);
     }
@@ -29,13 +31,17 @@ DecimalTime.prototype.getMilliseconds = function () {
 DecimalTime.prototype.toFullString = function () {
     return this.toString() + '.'
         + padZeroes(this.getMilliseconds(), 3);
-}
+};
 
 DecimalTime.prototype.toString = function () {
-    return this.getHours() + ':'
-        + padZeroes(this.getMinutes(), 2) + ':'
+    return this.toShortString() + ':'
         + padZeroes(this.getSeconds(), 2);
-}
+};
+
+DecimalTime.prototype.toShortString = function () {
+    return this.getHours() + ':'
+        + padZeroes(this.getMinutes(), 2);
+};
 
 function padZeroes(str, len) {
     var str = str.toString();

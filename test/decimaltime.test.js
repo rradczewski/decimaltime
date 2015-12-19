@@ -4,6 +4,11 @@ var expect = require('chai').expect;
 var DecimalTime = require('../src/decimaltime');
 
 describe('the decimaltime base class', function () {
+    it('works with fractions', function () {
+        var d = new DecimalTime(0.5);
+
+        expect(d.toFullString()).to.eql('5:00:00.000');
+    })
 
     it('returns the decimal time for a provided date', function () {
         var date = new Date('Sat Dec 19 2015 12:00:00.000 GMT+0000 (UTC)');
@@ -36,5 +41,7 @@ describe('the decimaltime base class', function () {
 
         expect(d.toFullString()).to.eql('5:24:26.839');
         expect(d.toString()).to.eql('5:24:26');
+        expect(d.toShortString()).to.eql('5:24');
     });
+
 });
