@@ -1,6 +1,6 @@
 # DecimalTime
 
-DecimalTime is a small (UTC-only) implementation of the decimal time units.
+DecimalTime is a small (UTC-only) implementation of [decimal time](https://en.wikipedia.org/wiki/Decimal_time units).
 
 In decimal time, a day has 10 hours, an hour has 100 minutes and a minute has 100 seconds. 
 A decimal second is exactly 0.864 _normal_ seconds long.
