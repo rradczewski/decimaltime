@@ -34,10 +34,12 @@ Date.fromTime = function (hours, minutes, seconds, milliseconds, timezoneOffset)
 }
 
 Date.utcFractionFromDate = function (date) {
-    return (date.getUTCHours()*60*60*1000 +
-           date.getUTCMinutes()*60*1000 +
-           date.getUTCSeconds()*1000 +
-           date.getUTCMilliseconds()) / (24*60*60*1000);
+    return Date.fromTime(
+            date.getUTCHours(),
+            date.getUTCMinutes(),
+            date.getUTCSeconds(),
+            date.getUTCMilliseconds(),
+            0);
 }
 
 module.exports = DecimalTime;
