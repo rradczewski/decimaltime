@@ -2,13 +2,13 @@
 
 function DecimalTime(hours, minutes, seconds, milliseconds, timezoneOffset) {
     if(arguments.length === 0) {
-        this.fraction = Date.utcFractionFromDate(new Date());
+        this.fraction = DecimalTime.utcFractionFromDate(new Date());
     } else if(hours.constructor === Date) {
-        this.fraction = Date.utcFractionFromDate(hours);
+        this.fraction = DecimalTime.utcFractionFromDate(hours);
     } else if(typeof hours.valueOf() === 'number' && arguments.length == 1) {
         this.fraction = hours;
     } else {
-        this.fraction = Date.utcFractionFromTime(hours | 0, minutes | 0, seconds | 0, milliseconds | 0, timezoneOffset | 0);
+        this.fraction = DecimalTime.utcFractionFromTime(hours | 0, minutes | 0, seconds | 0, milliseconds | 0, timezoneOffset | 0);
     }
 }
 
@@ -55,7 +55,7 @@ function padZeroes(str, len) {
     return str;
 }
 
-Date.utcFractionFromTime = function (hours, minutes, seconds, milliseconds, timezoneOffset) {
+DecimalTime.utcFractionFromTime = function (hours, minutes, seconds, milliseconds, timezoneOffset) {
     return (hours*60*60*1000 +
         minutes*60*1000 +
         seconds*1000 +
@@ -64,8 +64,8 @@ Date.utcFractionFromTime = function (hours, minutes, seconds, milliseconds, time
         (24*60*60*1000);
 };
 
-Date.utcFractionFromDate = function (date) {
-    return Date.utcFractionFromTime(
+DecimalTime.utcFractionFromDate = function (date) {
+    return DecimalTime.utcFractionFromTime(
             date.getUTCHours(),
             date.getUTCMinutes(),
             date.getUTCSeconds(),
