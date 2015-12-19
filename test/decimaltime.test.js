@@ -29,4 +29,12 @@ describe('the decimaltime base class', function () {
         expect(d.getSeconds()).to.eql(26);
         expect(d.getMilliseconds()).to.eql(839);
     });
+
+    it('returns a full time string', function () {
+        var date = new Date('Sat Dec 19 2015 12:34:56.789 GMT+0000 (UTC)');
+        var d = new DecimalTime(date);
+
+        expect(d.toFullString()).to.eql('5:24:26.839');
+        expect(d.toString()).to.eql('5:24:26');
+    });
 });
