@@ -12,10 +12,10 @@ function DecimalTime(hours, minutes, seconds, milliseconds, timezoneOffset) {
     }
 }
 
-DecimalTime.prototype.getDays = function () {
-    return this.fraction | 0;
-};
-
+DecimalTime.prototype.withUTCOffset = function (timezoneInHours) {
+    var fraction = (this.fraction + DecimalTime.utcFractionFromTime(timezoneInHours, 0, 0, 0, 0) + 1) % 1;
+    return new DecimalTime(fraction);
+}
 DecimalTime.prototype.getHours = function () {
     return ((this.fraction * 10) | 0) % 10;
 };
